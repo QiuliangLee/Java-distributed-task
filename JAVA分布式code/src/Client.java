@@ -21,6 +21,10 @@ public class Client extends JFrame {
     int tri_x[] = {360, 390, 420, 360};
     int tri_y[] = {100, 60, 100, 100};
     boolean triflag = false;
+    int selectedIndex = 0, selectedIndex2 = 0, selectedIndex3 = 0, selectedIndex4 = 0;
+    Color color1;
+    Color color2;
+    Color color3;
 
     public Client() {
         this.setBackground(Color.blue);
@@ -51,19 +55,19 @@ public class Client extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         if (circle_flag == true) {
-            g.setColor(Color.black);
+            g.setColor(color1);
             g.drawOval(circle_x, circle_y, circle_width, circle_height);
             g.fillOval(circle_x, circle_y, circle_height, circle_height);
         }
         if (rectflag == true) {
-            g.setColor(Color.blue);
+            g.setColor(color2);
             //绘矩形
             g.drawRect(rect_x, rect_y, Rect_width, Rect_height);
             g.fillRect(rect_x, rect_y, Rect_width, Rect_height);
         }
         if (triflag == true) {
             cousultPolygon(tri_x[0], tri_y[0]);
-            g.setColor(Color.cyan);
+            g.setColor(color3);
             //绘制三角形
             g.drawPolygon(tri_x, tri_y, 4);
             g.fillPolygon(tri_x, tri_y, 4);
@@ -88,6 +92,8 @@ public class Client extends JFrame {
         }
     }
 
+    int times = 0;
+
     //3、接收数据
     private void accept(BufferedReader br) throws IOException {
         //获取圆数据
@@ -101,6 +107,7 @@ public class Client extends JFrame {
         circle_height = Integer.parseInt(rOval_height);
         String _ovalflag = br.readLine();
         circle_flag = Boolean.parseBoolean(_ovalflag);
+        selectedIndex = Integer.valueOf(br.readLine());
         //获取矩形数据
         String rectx = br.readLine();
         String recty = br.readLine();
@@ -112,6 +119,8 @@ public class Client extends JFrame {
         Rect_height = Integer.parseInt(rRect_height);
         String _rectflag = br.readLine();
         rectflag = Boolean.parseBoolean(_rectflag);
+        selectedIndex2 = Integer.valueOf(br.readLine());
+
         //获取三角形数据
         String x30 = br.readLine();
         String y30 = br.readLine();
@@ -119,6 +128,41 @@ public class Client extends JFrame {
         tri_y[0] = Integer.parseInt(y30);
         String _triflag = br.readLine();
         triflag = Boolean.parseBoolean(_triflag);
+        selectedIndex3 = Integer.valueOf(br.readLine());
+        switch (selectedIndex) {
+            case 1:
+                color1 = Color.red;
+                break;
+            case 2:
+                color1 = Color.blue;
+                break;
+            default:
+                color1 = Color.black;
+                break;
+        }
+        switch (selectedIndex2) {
+            case 1:
+                color2 = Color.red;
+                break;
+            case 2:
+                color2 = Color.blue;
+                break;
+            default:
+                color2 = Color.black;
+                break;
+        }
+        switch (selectedIndex3) {
+            case 1:
+                color3 = Color.red;
+                break;
+            case 2:
+                color3 = Color.blue;
+                break;
+            default:
+                color3 = Color.black;
+                break;
+        }
+        System.out.println(times++ + "\t" + color1 + "\t" + color2 + "\t" + color3);
     }
 
     public static void main(String[] args) {
@@ -127,7 +171,3 @@ public class Client extends JFrame {
         boll.mypaint();
     }
 }
-
-
-
-

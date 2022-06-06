@@ -25,6 +25,7 @@ public class Server extends JFrame implements ActionListener {
     int circle_height = -1;
     int Rect_width = -1;
     int Rect_height = -1;
+    JComboBox cmb, cmb2, cmb3;
     //按钮
     JButton bt1 = new JButton("添加圆形");
     JButton bt2 = new JButton("添加矩形");
@@ -42,8 +43,37 @@ public class Server extends JFrame implements ActionListener {
         this.setVisible(true);//窗体在默认情况下是不可见的，只在后台运行，只有像这样设置可见后，在程序运行的时候，窗体才会出现。
         this.setTitle("Server");//设置标题
 
+        //圆下拉框
+        JLabel label1 = new JLabel("圆形颜色：");    //创建标签
+         cmb = new JComboBox();    //创建JComboBox
+        cmb.addItem("--请选择--");    //向下拉列表中添加一项
+        cmb.addItem("红色");
+        cmb.addItem("蓝色");
+        this.add(label1);
+        this.add(cmb);
+
+        //矩形下拉框
+        JLabel label2 = new JLabel("矩形颜色：");    //创建标签
+        cmb2 = new JComboBox();    //创建JComboBox
+        cmb2.addItem("--请选择--");    //向下拉列表中添加一项
+        cmb2.addItem("红色");
+        cmb2.addItem("蓝色");
+        this.add(label2);
+        this.add(cmb2);
+
+        //三角形下拉框
+        JLabel label3 = new JLabel("三角形颜色：");    //创建标签
+        cmb3 = new JComboBox();    //创建JComboBox
+        cmb3.addItem("--请选择--");    //向下拉列表中添加一项
+        cmb3.addItem("红色");
+        cmb3.addItem("蓝色");
+        this.add(label3);
+        this.add(cmb3);
+
         //设置组件的宽高
         this.setSize(440, 440);
+
+        //设置面板、组件颜色
         bt1.setBackground(Color.red);
         bt2.setBackground(Color.red);
         bt3.setBackground(Color.red);
@@ -164,16 +194,19 @@ public class Server extends JFrame implements ActionListener {
         ps.println(circle_width);
         ps.println(circle_height);
         ps.println(circle_flag);
+        ps.println(cmb.getSelectedIndex());
         //矩形
         ps.println(rect_x);
         ps.println(rect_y);
         ps.println(Rect_width);
         ps.println(Rect_height);
         ps.println(rect_flag);
+        ps.println(cmb2.getSelectedIndex());
         //三角形
         ps.println(tri_x[0]);
         ps.println(tri_y[0]);
         ps.println(tri_flag);
+        ps.println(cmb3.getSelectedIndex());
     }
 
     public static void main(String[] args) throws IOException {
